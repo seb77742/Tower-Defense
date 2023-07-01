@@ -9,7 +9,7 @@ var enemiesleft = 0
 var enemieswave = [5,10,20,30,50,0]
 var wavespeed = [1,1,0.5,0.5,0.3,100]
 
-var enemy = preload("res://Scenes/enemy.tscn")
+var enemy = preload("res://modules/enemy/enemy.tscn")
 
 func _ready():
 	$wavetimer.start()
