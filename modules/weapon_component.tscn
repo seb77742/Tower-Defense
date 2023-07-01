@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://da0cyyvqsdgyn"]
+
+[ext_resource type="Texture2D" uid="uid://cyw26gvgnsxym" path="res://src/sprite-sheet.svg" id="1_0c1xk"]
+[ext_resource type="Script" path="res://modules/weapon_component.gd" id="1_0yvc6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4x6a"]
+resource_local_to_scene = true
+radius = 128.0
+
+[sub_resource type="Animation" id="Animation_wwfdp"]
+resource_name = "shoot"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8htoh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dny4n"]
+_data = {
+"RESET": SubResource("Animation_8htoh"),
+"shoot": SubResource("Animation_wwfdp")
+}
+
+[node name="WeaponComponent" type="Node2D"]
+script = ExtResource("1_0yvc6")
+fire_range = null
+fire_cooldown = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0c1xk")
+offset = Vector2(40, 0)
+region_enabled = true
+region_rect = Rect2(192, 176, 54, 18)
+
+[node name="BulletSpawnComponent" type="Marker2D" parent="."]
+position = Vector2(65, 0)
+
+[node name="Range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_r4x6a")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dny4n")
+}
