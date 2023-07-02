@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Tower Defense"
-run/main_scene="res://modules/game/game.tscn"
+run/main_scene="res://modules/win,main/main.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GVariabel="*res://modules/shared/GVariabel.gd"
 
 [layer_names]
 

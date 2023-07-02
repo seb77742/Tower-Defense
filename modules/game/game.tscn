@@ -1,27 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://igd6iw4xkovo"]
+[gd_scene load_steps=3 format=3 uid="uid://igd6iw4xkovo"]
 
 [ext_resource type="Script" path="res://modules/game/game.gd" id="1_8oxmr"]
 [ext_resource type="PackedScene" uid="uid://4qrxanirki5r" path="res://modules/player/player.tscn" id="2_1hees"]
-
-[sub_resource type="Curve2D" id="Curve2D_7uupt"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 275, 538, 0, 0, 0, 0, 481, 255, 0, 0, 0, 0, 718, 179, 0, 0, 0, 0, 769, 166)
-}
-point_count = 4
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_8oxmr")
 
 [node name="player" parent="." instance=ExtResource("2_1hees")]
-position = Vector2(573, 364)
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_7uupt")
+position = Vector2(576, 324)
 
 [node name="wavetimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="enemytimer" type="Timer" parent="."]
+
+[node name="Gold" type="Label" parent="."]
+offset_right = 76.0
+offset_bottom = 37.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Gold"
+
+[node name="PlayerHP" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 33.0
+offset_right = 75.0
+offset_bottom = 70.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "HP"
 
 [connection signal="timeout" from="wavetimer" to="." method="_on_wavetimer_timeout"]
 [connection signal="timeout" from="enemytimer" to="." method="_on_enemytimer_timeout"]

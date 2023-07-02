@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://mp7ag5j3tiq1"]
+
+[node name="win" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 488.0
+offset_top = 295.0
+offset_right = 664.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "YOU WIN"

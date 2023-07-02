@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://modules/player/player.gd" id="1_4v6g3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7vs5"]
-radius = 181.003
+radius = 327.153
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvtgg"]
 size = Vector2(40, 42)
 
-[node name="player" type="Node2D"]
+[node name="player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_4v6g3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -24,12 +24,17 @@ color = Color(1, 0.427451, 1, 1)
 shape = SubResource("CircleShape2D_r7vs5")
 metadata/_edit_lock_ = true
 
-[node name="Collision" type="Area2D" parent="."]
+[node name="Collision" type="Area2D" parent="." groups=["Player"]]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource("RectangleShape2D_yvtgg")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 metadata/_edit_lock_ = true
 
-[connection signal="area_entered" from="Sight" to="." method="_on_sight_area_entered"]
-[connection signal="area_exited" from="Sight" to="." method="_on_sight_area_exited"]
+[node name="shoottimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]
+[connection signal="timeout" from="shoottimer" to="." method="_on_shoottimer_timeout"]
