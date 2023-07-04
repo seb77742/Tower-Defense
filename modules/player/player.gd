@@ -4,6 +4,9 @@ var bullet = preload("res://modules/bullet/bullet.tscn")
 var enemies = []
 var current_enemy
 
+func _ready():
+	$Sight/CollisionSight.shape.radius = GVariabel.towerradius
+	
 func _physics_process(delta):
 	if enemies != []:
 		current_enemy = enemies[0]
@@ -27,4 +30,5 @@ func _on_shoottimer_timeout():
 				b.global_position = global_position
 				b.target = current_enemy
 				get_parent().add_child(b)
+
 

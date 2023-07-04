@@ -4,8 +4,7 @@ var wave = 0
 var enemiesleft = 0
 var enemieswave = [5,10,20,30,50,0]
 var wavespeed = [1,1,0.5,0.5,0.3,100]
-
-var radius = 300
+@onready var stimer = get_node("player/shoottimer") 
 
 var enemy = preload("res://modules/enemy/enemy.tscn")
 
@@ -16,6 +15,7 @@ func _ready():
 func _process(delta):
 	$Gold.text = "Gold: " + str(GVariabel.Gold)
 	$PlayerHP.text = "HP: " + str(GVariabel.PlayerHP)
+	$Fre.text = "Fre: " + str(stimer.wait_time)
 
 func _on_wavetimer_timeout():
 	enemiesleft = enemieswave[wave]
@@ -26,8 +26,8 @@ func _on_enemytimer_timeout():
 	var instance = enemy.instantiate()
 	var rng = RandomNumberGenerator.new()
 	var ranint = rng.randi_range(0, 360)
-	var x = $player.position.x + radius * cos(ranint)
-	var y = $player.position.y + radius * sin(ranint)
+	var x = $player.position.x + 450 * cos(ranint)
+	var y = $player.position.y + 450 * sin(ranint)
 	instance.position = Vector2(x,y)
 	add_child(instance)
 	enemiesleft -=1
@@ -37,9 +37,24 @@ func _on_enemytimer_timeout():
 		if wave < len(enemieswave):
 			$wavetimer.start()
 		else:
-			get_tree().change_scene("res://Scenes/win.tscn")
-			
+			get_tree().change_scene("res://modules/win,main/win.tscn")
 			
 func _draw():
 	var color = Color(1.0, 0.0, 0.0)
-	draw_arc($player.position,radius, 0, TAU, 1000, color)
+	draw_arc($player.position,GVariabel.towerradius, 0, TAU, 1000, color,1.0, true)
+
+
+func _on_bulletspeed_pressed():
+	if GVariabel.Gold >= 10:
+		GVariabel.Gold -=10
+		stimer.wait_time -= 0.05
+		
+
+func _on_raduis_pressed():
+	if GVariabel.Gold >= 10:
+		GVariabel.Gold -=10
+		GVariabel.towerradius +=10
+		#redraw circle
+		queue_redraw() 
+		#resize collisionshape sight
+		get_node("player/Sight/CollisionSight").shape.radius = GVariabel.towerradius

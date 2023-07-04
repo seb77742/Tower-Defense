@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://modules/player/player.gd" id="1_4v6g3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7vs5"]
-radius = 327.153
+radius = 176.182
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvtgg"]
 size = Vector2(40, 42)
@@ -20,7 +20,7 @@ color = Color(1, 0.427451, 1, 1)
 
 [node name="Sight" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sight"]
+[node name="CollisionSight" type="CollisionShape2D" parent="Sight"]
 shape = SubResource("CircleShape2D_r7vs5")
 metadata/_edit_lock_ = true
 

@@ -1,13 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://igd6iw4xkovo"]
+[gd_scene load_steps=5 format=3 uid="uid://igd6iw4xkovo"]
 
 [ext_resource type="Script" path="res://modules/game/game.gd" id="1_8oxmr"]
 [ext_resource type="PackedScene" uid="uid://4qrxanirki5r" path="res://modules/player/player.tscn" id="2_1hees"]
+[ext_resource type="Script" path="res://modules/game/ParallaxBackground.gd" id="3_3ani8"]
+
+[sub_resource type="GDScript" id="GDScript_sms4m"]
+script/source = "extends ParallaxBackground
+
+var scrolling_speed = 50
+
+func _process(delta):
+	scroll_offset.y += scrolling_speed * delta
+"
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_8oxmr")
+metadata/_edit_horizontal_guides_ = [1046.0]
 
 [node name="player" parent="." instance=ExtResource("2_1hees")]
-position = Vector2(576, 324)
+position = Vector2(231, 400)
 
 [node name="wavetimer" type="Timer" parent="."]
 one_shot = true
@@ -23,12 +34,135 @@ text = "Gold"
 
 [node name="PlayerHP" type="Label" parent="."]
 offset_left = -1.0
-offset_top = 33.0
+offset_top = 28.0
 offset_right = 75.0
-offset_bottom = 70.0
+offset_bottom = 65.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 text = "HP"
 
+[node name="Fre" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 58.0
+offset_right = 75.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Fre"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Bulletspeed" type="Button" parent="CanvasLayer"]
+offset_left = 264.0
+offset_top = 722.0
+offset_right = 364.0
+offset_bottom = 790.0
+text = "Bulletspeed"
+
+[node name="Raduis" type="Button" parent="CanvasLayer"]
+offset_left = 371.0
+offset_top = 720.0
+offset_right = 471.0
+offset_bottom = 788.0
+text = "Radius"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_3ani8")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.0784314)
+offset_left = -25.0
+offset_right = 95.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.0784314)
+offset_left = 382.0
+offset_top = 46.0
+offset_right = 422.0
+offset_bottom = 86.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.0784314)
+offset_left = 130.0
+offset_top = 960.0
+offset_right = 170.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.0784314)
+offset_left = 44.0
+offset_top = 790.0
+offset_right = 164.0
+offset_bottom = 910.0
+color = Color(0, 0, 0, 1)
+
+[node name="Visibiltytimer" type="Timer" parent="ParallaxBackground/ParallaxLayer"]
+wait_time = 5.0
+autostart = true
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+script = SubResource("GDScript_sms4m")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 261.0
+offset_top = 91.0
+offset_right = 324.0
+offset_bottom = 154.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 445.0
+offset_top = 508.0
+offset_right = 485.0
+offset_bottom = 548.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 369.0
+offset_top = 1161.0
+offset_right = 409.0
+offset_bottom = 1201.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 164.0
+offset_top = 161.0
+offset_right = 204.0
+offset_bottom = 201.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 318.0
+offset_top = 379.0
+offset_right = 358.0
+offset_bottom = 419.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="ParallaxBackground2/ParallaxLayer2"]
+modulate = Color(1, 1, 1, 0.313726)
+offset_left = 245.0
+offset_top = 564.0
+offset_right = 365.0
+offset_bottom = 684.0
+color = Color(0.716296, 0.716296, 0.716296, 1)
+
 [connection signal="timeout" from="wavetimer" to="." method="_on_wavetimer_timeout"]
 [connection signal="timeout" from="enemytimer" to="." method="_on_enemytimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Bulletspeed" to="." method="_on_bulletspeed_pressed"]
+[connection signal="pressed" from="CanvasLayer/Raduis" to="." method="_on_raduis_pressed"]
+[connection signal="timeout" from="ParallaxBackground/ParallaxLayer/Visibiltytimer" to="ParallaxBackground" method="_on_visibiltytimer_timeout"]

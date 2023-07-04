@@ -17,6 +17,7 @@ func _on_bullet_collision_area_entered(area):
 		health -=1
 		if health <= 0:
 			GVariabel.Gold += 10
+			GVariabel.Score += 1
 			self.queue_free()
 			
 	if area.is_in_group("Player"):

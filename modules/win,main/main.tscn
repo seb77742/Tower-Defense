@@ -6,17 +6,17 @@
 script = ExtResource("1_gveit")
 
 [node name="play" type="Button" parent="."]
-offset_left = 427.0
-offset_top = 75.0
-offset_right = 708.0
-offset_bottom = 183.0
+offset_left = 106.0
+offset_top = 105.0
+offset_right = 387.0
+offset_bottom = 213.0
 text = "Play"
 
 [node name="quit" type="Button" parent="."]
-offset_left = 427.0
-offset_top = 240.0
-offset_right = 708.0
-offset_bottom = 348.0
+offset_left = 107.0
+offset_top = 269.0
+offset_right = 388.0
+offset_bottom = 377.0
 text = "Quit"
 
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
